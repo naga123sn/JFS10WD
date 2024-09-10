@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Pagination</title>
+    <style>
+        .pagination {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+        }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+        .pagination a {
+            display: block;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #007bff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .pagination a.active {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .pagination a.disabled {
+            color: #aaa;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="pagination-container"></div>
+
+    <script src="pagination.js"></script>
+</body>
+</html>
+document.addEventListener('DOMContentLoaded', function () {
+    const paginationContainer = document.getElementById('pagination-container');
+    const totalPages = 10; // Total number of pages
+    let currentPage = 1; // Current active page
+
+    // Function to create pagination elements
+    function createPagination() {
+        paginationContainer.innerHTML = ''; // Clear existing content
+
+        const ul = document.createElement('ul');
+        ul.className = 'pagination';
+
+        // Create 'Previous' button
+        const prevLi = document.createElement('li');
+        const prevLink = document.createElement('a');
+        prevLink.textContent = 'Previous';
+        prevLink.href = '#';
+        prevLink.className = currentPage === 1 ? 'disabled' : '';
+        prevLink.addEventListener('click', () => changePage(currentPage - 1));
+        prevLi.appendChild(prevLink);
+        ul.appendChild(prevLi);
+
+        // Create page number buttons
+        for (let i = 1; i <= totalPages; i++) {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.textContent = i;
+            a.href = '#';
+            a.className = i === currentPage ? 'active' : '';
+            a.addEventListener('click', () => changePage(i));
+            li.appendChild(a);
+            ul.appendChild(li);
+        }
+
+        // Create 'Next' button
+        const nextLi = document.createElement('li');
+        const nextLink = document.createElement('a');
+        nextLink.textContent = 'Next';
+        nextLink.href = '#';
+        nextLink.className = currentPage === totalPages ? 'disabled' : '';
+        nextLink.addEventListener('click', () => changePage(currentPage + 1));
+        nextLi.appendChild(nextLink);
+        ul.appendChild(nextLi);
+
+        paginationContainer.appendChild(ul);
+    }
+
+    // Function to handle page change
+    function changePage(page) {
+        if (page < 1 || page > totalPages) return; // Prevent invalid page numbers
+        currentPage = page;
+        createPagination(); // Recreate pagination with updated state
+    }
+
+    // Initial pagination creation
+    createPagination();
+});
+<!-- Test Suite (Optional) -->
+<script>
+    function runTests() {
+        let passed = 0;
+        const testCases = [
+            { currentPage: 1, nextPage: 2, expected: 2 },
+            { currentPage: 2, nextPage: 1, expected: 1 },
+            { currentPage: 1, nextPage: 0, expected: 1 }, // Edge case: not allowed to go before the first page
+            { currentPage: 10, nextPage: 11, expected: 10 }, // Edge case: not allowed to go beyond the last page
+        ];
+
+        testCases.forEach(test => {
+            currentPage = test.currentPage;
+            changePage(test.nextPage);
+            const result = currentPage === test.expected;
+            if (result) {
+                console.log(`Test passed: Current Page: ${test.currentPage}, Next Page: ${test.nextPage}, Expected: ${test.expected}`);
+                passed++;
+            } else {
+                console.error(`Test failed: Current Page: ${test.currentPage}, Next Page: ${test.nextPage}, Expected: ${test.expected}, Got: ${currentPage}`);
+            }
+        });
+
+        console.log(`${passed} of ${testCases.length} tests passed.`);
+    }
+
+    runTests();
+</script>
