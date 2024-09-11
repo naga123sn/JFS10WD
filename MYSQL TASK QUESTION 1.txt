@@ -1,0 +1,60 @@
+Create the Empl Table
+CREATE TABLE Empl (
+    Empno INT PRIMARY KEY,
+    Ename VARCHAR(50),
+    Job VARCHAR(20),
+    Mgr INT,
+    Hiredate DATE,
+    Sal DECIMAL(10, 2),
+    Comm DECIMAL(10, 2),
+    Deptno INT
+);
+
+Insert Employee Data into the Empl Table
+
+INSERT INTO Empl (Empno, Ename, Job, Mgr, Hiredate, Sal, Comm, Deptno) VALUES
+(8369, 'Smith', 'Clerk', 8902, '1990-12-18', 800, NULL, 20),
+(8499, 'Anya', 'Salesman', 8698, '1991-02-20', 1600, 300, 30),
+(8521, 'Seth', 'Salesman', 8698, '1991-02-22', 1250, 500, 30),
+(8566, 'Mahadevan', 'Manager', 8839, '1991-04-02', 2985, NULL, 20),
+(8654, 'Momin', 'Salesman', 8698, '1991-09-28', 1250, 1400, 30),
+(8698, 'Bina', 'Manager', 8839, '1991-05-01', 2850, NULL, 30),
+(8882, 'Shivansh', 'Manager', 8839, '1991-06-09', 2450, NULL, 10),
+(8888, 'Scott', 'Analyst', 8566, '1991-12-09', 3000, NULL, 20),
+(8839, 'Amir', 'President', NULL, '1991-11-18', 5000, NULL, 10),
+(8844, 'Kuldeep', 'Salesman', 8698, '1991-09-08', 1500, 0.00, 30);
+
+ Display the employee name and salary of employees whose salary is greater than or equal to 2200:
+ 
+ SELECT Ename, Sal
+FROM Empl
+WHERE Sal >= 2200;
+
+Display details of employees who are not getting a commission:
+SELECT *
+FROM Empl
+WHERE Comm IS NULL;
+
+Display the employee name and salary of those employees who don't have their salary in the range of 2500 to 4000:
+
+SELECT Ename, Sal
+FROM Empl
+WHERE Sal NOT BETWEEN 2500 AND 4000;
+
+Display the name, job title, and salary of employees who don't have a manager:
+
+SELECT Ename, Job, Sal
+FROM Empl
+WHERE Mgr IS NULL;
+
+Display the name of an employee whose name contains "A" as the third alphabet:
+
+SELECT Ename
+FROM Empl
+WHERE SUBSTRING(Ename, 3, 1) = 'A';
+
+Display the name of an employee whose name contains "T" as the last alphabet:
+
+SELECT Ename
+FROM Empl
+WHERE Ename LIKE '%T';
