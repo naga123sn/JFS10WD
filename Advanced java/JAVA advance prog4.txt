@@ -1,0 +1,34 @@
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        // Create a Scanner object for input
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter their birthdate
+        System.out.print("Enter your birthdate (yyyy-mm-dd): ");
+        String birthdateInput = scanner.nextLine();
+
+        // Parse the input string to a LocalDate object
+        LocalDate birthdate = LocalDate.parse(birthdateInput, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        // Get the current date
+        LocalDate currentDate = LocalDate.now();
+
+        // Calculate the period between the birthdate and the current date
+        Period age = Period.between(birthdate, currentDate);
+
+        // Output the calculated age in years, months, and days
+        System.out.println("Your age is: " + age.getYears() + " years, " +
+                           age.getMonths() + " months, and " +
+                           age.getDays() + " days.");
+    }
+}
+
+
+     OUTPUT :
+
+     Your age is: 34 years, 2 months, and 24 days.

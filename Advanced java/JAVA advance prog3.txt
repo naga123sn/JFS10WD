@@ -1,0 +1,28 @@
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        // List of student names
+        List<String> students = Arrays.asList("Alice", "Bob", "Andrew", "Charlie", "Anna", "David", "Amy", "Eve", "Albert", "George");
+
+        // Filter students whose names start with "A" using Stream API and lambda expression
+        List<String> specialGiftStudents = students.stream()
+                                                   .filter(name -> name.startsWith("A"))
+                                                   .collect(Collectors.toList());
+
+        // Print the list of students who will receive special gifts
+        System.out.println("Students receiving special gifts:");
+        specialGiftStudents.forEach(System.out::println);
+    }
+}
+
+OUTPUT :
+
+Students receiving special gifts:
+Alice
+Andrew
+Anna
+Amy
+Albert
