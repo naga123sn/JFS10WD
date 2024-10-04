@@ -1,0 +1,70 @@
+import java.lang.*;
+public class Account 
+{
+	private double balance;
+
+public Account()
+{
+    this.balance = 0.0;
+}
+
+public Account(double balance) {
+    this.balance = balance;
+}
+
+public void deposit(double amount) 
+{
+    if (amount > 0) 
+    {
+        balance += amount;
+        System.out.println("Deposited: " + amount);
+    } 
+    else 
+    {
+        System.out.println("Deposit amount must be positive.");
+    }
+}
+
+public void withdraw(double amount) {
+    if (amount > 0 && amount <= balance) {
+        balance -= amount;
+        System.out.println("Withdrew: " + amount);
+    } else if (amount > balance) {
+        System.out.println("Insufficient funds.");
+    } else {
+        System.out.println("Withdrawal amount must be positive.");
+    }
+}
+
+public void displayBalance() {
+    System.out.println("Current Balance: " + balance);
+}
+    public static void main(String[] args) 
+	{
+    	Account account1 = new Account();
+        Account account2 = new Account(500.0);
+        System.out.println("Account 1:");
+        account1.displayBalance();
+        System.out.println("Account 2:");
+        account2.displayBalance();
+        account1.deposit(200.0);
+        account1.withdraw(50.0);
+        account1.displayBalance();
+        account2.deposit(150.0);
+        account2.withdraw(700.0);
+        account2.displayBalance();
+    }
+}
+
+OUTPUT :
+
+Account 1:
+Current Balance: 0.0
+Account 2:
+Current Balance: 500.0
+Deposited: 200.0
+Withdrew: 50.0
+Current Balance: 150.0
+Deposited: 150.0
+Insufficient funds.
+Current Balance: 650.0

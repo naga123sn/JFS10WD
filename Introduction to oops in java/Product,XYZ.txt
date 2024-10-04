@@ -1,0 +1,96 @@
+import java.lang.*;
+public class Product 
+{
+	private int pid;
+    private double price;
+    private int quantity;
+
+    public Product(int pid, double price, int quantity) {
+        this.pid = pid;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    public int getPid() 
+    {
+        return pid;
+    }
+
+    public double getPrice() 
+    {
+        return price;
+    }
+
+    public int getQuantity() 
+    {
+        return quantity;
+    }
+}
+import java.util.Scanner;
+public class XYZ 
+{
+	public static double calculateTotalAmountSpent(Product[] products) {
+        double totalAmount = 0;
+        for (Product product : products) {
+            totalAmount += product.getPrice() * product.getQuantity();
+        }
+        return totalAmount;
+    }
+    public static void main(String[] args) 
+    {
+    	Scanner scanner = new Scanner(System.in);
+        Product[] products = new Product[5];
+        for (int i = 0; i < products.length; i++) 
+        {
+            System.out.println("Enter details for product " + (i + 1) + ": ");
+            System.out.print("PID: ");
+            int pid = scanner.nextInt();
+            System.out.print("Price: ");
+            double price = scanner.nextDouble();
+            System.out.print("Quantity: ");
+            int quantity = scanner.nextInt();
+            products[i] = new Product(pid, price, quantity);
+        }
+
+        int highestPricePid = products[0].getPid();
+        double highestPrice = products[0].getPrice();
+        for (Product product : products)
+        {
+            if (product.getPrice() > highestPrice) 
+            {
+                highestPrice = product.getPrice();
+                highestPricePid = product.getPid();
+            }
+        }
+        System.out.println("PID of the product with the highest price: " + highestPricePid);
+        double totalAmountSpent = calculateTotalAmountSpent(products);
+        System.out.println("Total amount spent on all products: " + totalAmountSpent);
+        
+        scanner.close();
+    }
+}
+		
+OUTPUT :
+Enter details for product 1: 
+PID: 20
+Price: 50
+Quantity: 1
+Enter details for product 2: 
+PID: 21
+Price: 55
+Quantity: 3
+Enter details for product 3: 
+PID: 22
+Price: 60
+Quantity: 6
+Enter details for product 4: 
+PID: 22
+Price: 65
+Quantity: 9
+Enter details for product 5: 
+PID: 23
+Price: 70
+Quantity: 12
+
+PID of the product with the highest price: 23
+Total amount spent on all products: 2000.0
