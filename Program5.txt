@@ -1,0 +1,29 @@
+import java.lang.*;
+import java.util.Scanner;  
+public class Program5 
+{
+public static void main(String[] args) 
+{
+	int a, b, c, smallest, temp;  
+	Scanner sc = new Scanner(System.in);  
+	System.out.println("Enter the first number:");  
+	a = sc.nextInt();  
+	System.out.println("Enter the second number:");  
+	b = sc.nextInt();  
+	System.out.println("Enter the third number:");  
+	c = sc.nextInt();  
+	temp=a<b?a:b;  
+	smallest=c<temp?c:temp;  
+	System.out.println("The smallest number is: "+smallest);  
+
+	}
+
+}
+       OUTPUT :
+ Enter the first number:
+10
+Enter the second number:
+20
+Enter the third number:
+30
+The smallest number is: 10
