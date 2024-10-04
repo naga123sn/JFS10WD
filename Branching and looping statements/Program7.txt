@@ -1,0 +1,34 @@
+import java.util.Scanner;
+public class Program7 
+{
+public static void main(String[] args) 
+{
+	Scanner scanner = new Scanner(System.in);
+    
+    System.out.print("Enter the value for i, j, and k: ");
+    int n = scanner.nextInt();  // Assuming i, j, and k are all the same and represented by n
+    
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n - i; j++) {
+            System.out.print(n - j + " ");
+        }
+        for (int k = n - i; k < n; k++) {
+            System.out.print(n - i + " ");
+        }
+        System.out.println();
+    }
+    
+    scanner.close();
+
+	}
+
+}
+     
+         OUTPUT :
+    
+       Enter the value for i, j, and k: 5
+5 4 3 2 1 
+5 4 3 2 4 
+5 4 3 3 3 
+5 4 2 2 2 
+5 1 1 1 1 
