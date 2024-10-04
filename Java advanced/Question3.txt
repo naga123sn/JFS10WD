@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class WeekdayArray {
+    public static void main(String[] args) {
+        // Array containing the names of the days of the week
+        String[] daysOfWeek = {
+            "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+        };
+
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Ask the user for the day index
+            System.out.print("Enter the day position (0-6): ");
+            int dayIndex = scanner.nextInt();
+
+            // Print the corresponding day name
+            System.out.println("Day: " + daysOfWeek[dayIndex]);
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Handle case where the index is out of bounds
+            System.out.println("Error: Invalid index. Please enter a number between 0 and 6.");
+
+        } finally {
+            scanner.close();
+        }
+    }
+}
+
+
+       OUTPUT :
+Enter the day position (0-6): 3
+
+Day: Wednesday
+
+Enter the day position (0-6): 7
+
+Error: Invalid index. Please enter a number between 0 and 6.
+

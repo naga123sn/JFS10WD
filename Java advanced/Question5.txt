@@ -1,0 +1,117 @@
+import java.util.Stack;
+import java.util.Scanner;
+
+public class StackOperations {
+    private Stack<Integer> stack;
+
+    // Constructor
+    public StackOperations() {
+        stack = new Stack<>();
+    }
+
+    // Method to push elements onto the stack
+    public void pushElement(int element) {
+        stack.push(element);
+        System.out.println("Pushed " + element + " onto the stack.");
+    }
+
+    // Method to pop elements from the stack
+    public void popElement() {
+        if (isEmpty()) {
+            System.out.println("The stack is empty. Cannot pop.");
+        } else {
+            int removedElement = stack.pop();
+            System.out.println("Popped " + removedElement + " from the stack.");
+        }
+    }
+
+    // Method to check if the stack is empty
+    public boolean isEmpty() {
+        return stack.isEmpty();
+    }
+
+    // Main method to demonstrate stack operations
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        StackOperations operations = new StackOperations();
+
+        while (true) {
+            System.out.println("\nStack Operations Menu:");
+            System.out.println("1. Push Element");
+            System.out.println("2. Pop Element");
+            System.out.println("3. Check if Stack is Empty");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter an integer to push: ");
+                    int elementToPush = scanner.nextInt();
+                    operations.pushElement(elementToPush);
+                    break;
+                case 2:
+                    operations.popElement();
+                    break;
+                case 3:
+                    if (operations.isEmpty()) {
+                        System.out.println("The stack is empty.");
+                    } else {
+                        System.out.println("The stack is not empty.");
+                    }
+                    break;
+                case 4:
+                    System.out.println("Exiting...");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+}
+
+
+        OUTPUT :
+
+ Case 1: Push Elements
+
+Stack Operations Menu:
+1. Push Element
+2. Pop Element
+3. Check if Stack is Empty
+4. Exit
+Enter your choice: 1
+Enter an integer to push: 10
+Pushed 10 onto the stack.
+
+ Case 2: Pop Elements
+
+Stack Operations Menu:
+1. Push Element
+2. Pop Element
+3. Check if Stack is Empty
+4. Exit
+Enter your choice: 2
+Popped 10 from the stack.
+
+Case 3: Check if Stack is Empty
+ 
+Stack Operations Menu:
+1. Push Element
+2. Pop Element
+3. Check if Stack is Empty
+4. Exit
+Enter your choice: 3
+The stack is empty.
+
+Case 4: Invalid Input  
+
+Stack Operations Menu:
+1. Push Element
+2. Pop Element
+3. Check if Stack is Empty
+4. Exit
+Enter your choice: 5
+Invalid choice. Please try again.
+ 

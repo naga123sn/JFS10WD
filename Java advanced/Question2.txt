@@ -1,0 +1,55 @@
+InvalidAgeForVoterException.java :
+
+public class InvalidAgeForVoterException extends Exception 
+{
+    public InvalidAgeForVoterException(String message) 
+{
+        super(message);
+    }
+}
+
+VOTER.JAVA :
+
+public class Voter {
+    private int voterId;
+    private String name;
+    private int age;
+
+    // Parameterized constructor
+    public Voter(int voterId, String name, int age) throws InvalidAgeForVoterException {
+        if (age < 18) {
+            throw new InvalidAgeForVoterException("Invalid age for voter: " + age);
+        }
+        this.voterId = voterId;
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Voter ID: " + voterId + ", Name: " + name + ", Age: " + age;
+    }
+}
+      
+
+
+          OUTPUT :
+
+   Case 1: Valid Input
+
+ Enter Voter ID: 123
+Enter Name: John Doe
+Enter Age: 20
+
+Voter Details:
+Voter ID: 123, Name: John Doe, Age: 20
+
+Case 2: Invalid Age
+
+Enter Voter ID: 124
+Enter Name: Jane Doe
+Enter Age: 16
+
+Error: Invalid age for voter: 16
+
+
