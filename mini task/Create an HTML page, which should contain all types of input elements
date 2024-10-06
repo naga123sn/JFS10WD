@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Types Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 400px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>All Types of Input Elements</h1>
+    <form>
+        <label for="text">Text Input:</label>
+        <input type="text" id="text" name="text" placeholder="Enter text">
+
+        <label for="password">Password Input:</label>
+        <input type="password" id="password" name="password" placeholder="Enter password">
+
+        <label for="email">Email Input:</label>
+        <input type="email" id="email" name="email" placeholder="Enter email">
+
+        <label for="number">Number Input:</label>
+        <input type="number" id="number" name="number" placeholder="Enter number">
+
+        <label for="url">URL Input:</label>
+        <input type="url" id="url" name="url" placeholder="Enter URL">
+
+        <label for="tel">Telephone Input:</label>
+        <input type="tel" id="tel" name="tel" placeholder="Enter telephone number">
+
+        <label for="date">Date Input:</label>
+        <input type="date" id="date" name="date">
+
+        <label for="time">Time Input:</label>
+        <input type="time" id="time" name="time">
+
+        <label for="color">Color Picker:</label>
+        <input type="color" id="color" name="color">
+
+        <label for="checkbox">Checkbox Input:</label>
+        <input type="checkbox" id="checkbox" name="checkbox"> Check me!
+
+        <label for="radio1">Radio Input 1:</label>
+        <input type="radio" id="radio1" name="radio" value="option1"> Option 1
+
+        <label for="radio2">Radio Input 2:</label>
+        <input type="radio" id="radio2" name="radio" value="option2"> Option 2
+
+        <label for="select">Select Dropdown:</label>
+        <select id="select" name="select">
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+        </select>
+
+        <label for="textarea">Textarea:</label>
+        <textarea id="textarea" name="textarea" rows="4" placeholder="Enter your message"></textarea>
+
+        <label for="file">File Upload:</label>
+        <input type="file" id="file" name="file">
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

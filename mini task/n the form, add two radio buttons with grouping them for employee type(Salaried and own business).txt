@@ -1,0 +1,14 @@
+<form action="#" th:action="@{/submitForm}" th:object="${employee}" method="post">
+    <div>
+        <label>Employee Type:</label><br>
+        <input type="radio" id="salaried" name="employeeType" value="Salaried" th:field="*{employeeType}">
+        <label for="salaried">Salaried</label><br>
+        
+        <input type="radio" id="ownBusiness" name="employeeType" value="Own Business" th:field="*{employeeType}">
+        <label for="ownBusiness">Own Business</label><br>
+    </div>
+    
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
