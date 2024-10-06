@@ -1,0 +1,15 @@
+package com.example.feedbackapp.config;
+
+import com.example.feedbackapp.servlet.FeedbackServlet;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class ServletConfig {
+
+    @Bean
+    public ServletRegistrationBean<FeedbackServlet> feedbackServlet() {
+        return new ServletRegistrationBean<>(new FeedbackServlet(), "/feedback");
+    }
+}
