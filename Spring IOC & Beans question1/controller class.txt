@@ -1,0 +1,41 @@
+package com.example.catalog.controller;
+
+import com.example.catalog.entity.Product;
+import com.example.catalog.service.ProductService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class ProductController {
+
+    private final ProductService productService;
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
+
+    @GetMapping("/")
+    public String home() {
+        return "index"; // Display the options page
+    }
+
+    @GetMapping("/add-product")
+    public String addProductForm() {
+        return "add-product"; // Display the form for adding a product
+    }
+
+    @PostMapping("/add-product")
+    public String addProduct(Product product) {
+        productService.addProduct(product);
+        return "redirect:/"; // Redirect to the home page
+    }
+
+    @GetMapping("/display-products")
+    public String displayProducts(Model model) {
+        model.addAttribute("products", productService.getAllProducts());
+        return "display-products"; // Display the product catalog in tabular format
+    }
+}
