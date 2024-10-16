@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Full viewport height */
+            margin: 0; /* Remove default margin */
+            background-image: url('background_image.jpg'); /* Path to your background image */
+            background-size: cover; /* Cover the whole viewport */
+            font-family: Arial, sans-serif; /* Font styling */
+        }
+
+        h1 {
+            margin-bottom: 20px; /* Space below the heading */
+            background-color: rgba(255, 255, 255, 0.8); /* Lightened background for the title */
+            padding: 10px; /* Padding around the title */
+            border-radius: 10px; /* Rounded corners */
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 50px; /* Space between images */
+        }
+
+        .card {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9); /* Lightened background for the cards */
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            width: 200px; /* Fixed width for the cards */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add a shadow for depth */
+            cursor: pointer; /* Indicate clickable cards */
+        }
+
+        img {
+            width: 100%; /* Make images responsive */
+            border-radius: 10px;
+            transition: transform 0.3s; /* Smooth transition for scaling */
+        }
+
+        .hovered {
+            transform: scale(1.1); /* Scale up on hover */
+        }
+
+        a {
+            display: inline-block;
+            text-decoration: none; /* Remove underline from links */
+            padding: 10px 20px; /* Add padding around links */
+            margin-top: 10px; /* Space above the button */
+            color: white; /* Text color */
+            background-color: #007BFF; /* Bootstrap primary color */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+        }
+
+        a:hover {
+            background-color: #0056b3; /* Darker color on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee Management System</h1>
+    <div class="container">
+        <div class="card" onclick="toggleHover(this)">
+            <img th:src="@{/Admin.png}" alt="Admin Picture" />
+            <a href="/auth/login">Admin</a>
+        </div>
+        <div class="card" onclick="toggleHover(this)">
+            <img th:src="@{/Employee.png}" alt="Employee Picture" />
+            <a href="/auth/register">Employee</a>
+        </div>
+    </div>
+
+    <script>
+        function toggleHover(card) {
+            const img = card.querySelector('img');
+            img.classList.toggle('hovered');
+        }
+    </script>
+</body>
+</html>
