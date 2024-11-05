@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            background-image: url('/background.jpeg'); /* Replace with your background image URL */
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        /* Container */
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white for readability */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            width: 100%;
+            text-align: left;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #3e6fa5;
+            margin-bottom: 30px;
+        }
+
+        /* Button Styles */
+        .button-container {
+            margin-bottom: 20px;
+        }
+
+        .add-employee-link,
+        .return-home-link {
+            font-size: 18px;
+            display: inline-block;
+            color: #fff;
+            background-color: #007BFF;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 10px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-employee-link:hover,
+        .return-home-link:hover {
+            background-color: #0056b3;
+        }
+
+        /* Employee Info Box */
+        .employee-info {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+            font-size: 18px;
+        }
+
+        td {
+            font-size: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .actions a {
+            color: #007BFF;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .actions a:hover {
+            text-decoration: underline;
+        }
+
+        .actions a.delete {
+            color: #e3342f;
+        }
+
+        .actions a.delete:hover {
+            text-decoration: none;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            .container {
+                padding: 20px;
+                width: 90%;
+            }
+
+            .add-employee-link,
+            .return-home-link {
+                font-size: 16px;
+                padding: 8px 15px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+
+            .button-container {
+                text-align: center;
+            }
+
+            .actions a {
+                font-size: 14px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+
+        <!-- Success/Error Message -->
+        <div th:if="${message}" style="color: green;">
+            <p th:text="${message}"></p>
+        </div>
+        <div th:if="${error}" style="color: red;">
+            <p th:text="${error}"></p>
+        </div>
+
+        <!-- Button Links -->
+        <div class="button-container">
+            <a href="/admin/add" class="add-employee-link">Add New Employee</a>
+            <a href="/" class="return-home-link">Return to Home</a>
+        </div>
+
+        <!-- Total Employees Box -->
+        <div class="employee-info">
+            <span>Total Employees: </span><span id="totalEmployees">Loading...</span>
+        </div>
+
+        <!-- Employee Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Contact</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="employee : ${employees}">
+                    <td th:text="${employee.employeeId}"></td>
+                    <td th:text="${employee.name}"></td>
+                    <td th:text="${employee.location}"></td>
+                    <td th:text="${employee.contact}"></td>
+                    <td class="actions">
+                        <a th:href="@{/admin/edit/{employeeId}(employeeId=${employee.employeeId})}">Edit</a> |
+                        <a th:href="@{/admin/delete/{employeeId}(employeeId=${employee.employeeId})}" 
+                           onclick="return confirm('Are you sure you want to delete this employee?')">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Get the number of employees (passed from Thymeleaf)
+        var totalEmployees = [[${employees.size()}]];  // This gets the count of employees
+
+        // Update the Total Employees display
+        document.getElementById('totalEmployees').textContent = totalEmployees;
+    </script>
+
+</body>
+</html>

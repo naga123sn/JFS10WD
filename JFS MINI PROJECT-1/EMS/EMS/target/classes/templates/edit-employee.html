@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Employee</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('/background.jpeg') no-repeat center center fixed; /* Background Image */
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 30px;
+            font-size: 36px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.8); /* Transparent background */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            transition: border 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border: 1px solid #007bff;
+            outline: none;
+        }
+
+        input[disabled] {
+            background-color: #f9f9f9;
+            cursor: not-allowed;
+        }
+
+        button {
+            padding: 14px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #007bff;
+        }
+
+        .back-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+                width: 90%;
+                max-width: 500px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            input[type="text"] {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            .container {
+                padding: 20px;
+                width: 90%;
+                max-width: 450px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Edit Employee</h1>
+
+    <div class="container">
+        <form action="/admin/edit" method="post" th:object="${employee}">
+            <div class="form-group">
+                <label for="employeeId">Employee ID:</label>
+                <input type="text" id="employeeId" th:field="*{employeeId}" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" th:field="*{name}">
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" th:field="*{location}">
+            </div>
+
+            <div class="form-group">
+                <label for="contact">Contact:</label>
+                <input type="text" id="contact" th:field="*{contact}">
+            </div>
+
+            <button type="submit">Save Changes</button>
+        </form>
+
+        <div class="back-link">
+            <a href="/admin">Back to Admin Dashboard</a>
+        </div>
+    </div>
+
+</body>
+</html>
