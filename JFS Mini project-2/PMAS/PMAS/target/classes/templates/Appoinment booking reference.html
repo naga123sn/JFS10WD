@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Booking</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Book an Appointment</h2>
+        <div class="row">
+            <!-- Example of a list of available appointments -->
+            <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Doctor</th>
+                            <th>Specialty</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Loop through available appointments -->
+                        <tr th:each="appointment : ${appointments}">
+                            <td th:text="${appointment.doctorName}">Dr. John Doe</td>
+                            <td th:text="${appointment.specialty}">Cardiology</td>
+                            <td th:text="${appointment.date}">2024-11-11</td>
+                            <td th:text="${appointment.time}">10:00 AM</td>
+                            <td>
+                                <form th:action="@{/api/appointments/book}" method="POST">
+                                    <input type="hidden" name="appointmentId" th:value="${appointment.id}">
+                                    <button type="submit" class="btn btn-success">Book</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

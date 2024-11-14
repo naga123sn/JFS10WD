@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medication Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Medication Management</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Medication Name</th>
+                            <th>Dosage</th>
+                            <th>Frequency</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Loop through medications -->
+                        <tr th:each="medication : ${medications}">
+                            <td th:text="${medication.name}">Medication Name</td>
+                            <td th:text="${medication.dosage}">500mg</td>
+                            <td th:text="${medication.frequency}">Twice a day</td>
+                            <td>
+                                <form th:action="@{/api/medications/edit}" method="POST">
+                                    <input type="hidden" name="medicationId" th:value="${medication.id}">
+                                    <button type="submit" class="btn btn-primary">Edit</button>
+                                </form>
+                                <form th:action="@{/api/medications/delete}" method="POST">
+                                    <input type="hidden" name="medicationId" th:value="${medication.id}">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-success" data-toggle="modal" data-target="#addMedicationModal">Add Medication</button>
+            </div>
+        </div>
+
+        <!-- Add Medication Modal -->
+        <div class="modal fade" id="addMedicationModal" tabindex="-1" aria-labelledby="addMedicationModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addMedicationModalLabel">Add New Medication</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="/api/medications/add" method="POST">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="medicationName">Medication Name</label>
+                                <input type="text" class="form-control" id="medicationName" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="dosage">Dosage</label>
+                                <input type="text" class="form-control" id="dosage" name="dosage" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="frequency">Frequency</label>
+                                <input type="text" class="form-control" id="frequency" name="frequency" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
